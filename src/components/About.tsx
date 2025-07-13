@@ -8,6 +8,7 @@ import { motion, Variants } from "framer-motion";
  * - Preserves the "About Me" heading + decorative line
  * - Modern grid‑based layout with better alignment & spacing
  * - Subtle Framer‑Motion entrance animations
+ * - Adjusted for better height balance between columns
  */
 const About: React.FC = () => {
   const education = [
@@ -19,15 +20,15 @@ const About: React.FC = () => {
       location: "Jamshedpur, Jharkhand",
     },
     {
-      year: "2020-2022",
-      degree: "12th Grade",
+      year: "2019-2021",
+      degree: "Higher Secondary Education (CBSE)",
       institution: "DAV Kapildev Public School",
       score: "92%",
       location: "Ranchi, Jharkhand",
     },
     {
-      year: "2018-2020",
-      degree: "10th Grade",
+      year: "2008-2019",
+      degree: "Secondary Education (CBSE)",
       institution: "Jharkhand Public School",
       score: "92%",
       location: "Baliyapur, Jharkhand",
@@ -56,10 +57,10 @@ const About: React.FC = () => {
           <div className="w-20 h-1 bg-blue-600 mx-auto rounded"></div>
         </div>
 
-        {/* Main Grid */}
-        <div className="grid lg:grid-cols-12 gap-12">
+        {/* Main Grid - Adjusted for better balance */}
+        <div className="grid lg:grid-cols-12 gap-12 items-start">
           {/* Left column: Story & Motivation (span 7) */}
-          <div className="lg:col-span-6 flex flex-col gap-8">
+          <div className="lg:col-span-7 flex flex-col gap-8">
             {/* Story */}
             <motion.div
               initial="hidden"
@@ -71,13 +72,13 @@ const About: React.FC = () => {
             >
               <h3 className="text-2xl font-semibold text-white mb-4">My Story</h3>
               <p className="leading-relaxed mb-4">
-                I’m a <strong>final‑year B.Tech student in Electronics & Communication Engineering at NIT Jamshedpur</strong>, driven by a fascination with how elegant code can turn complex ideas into real‑world solutions. Over the last four years I’ve solved <strong>300 + data‑structure &amp; algorithm challenges</strong> and shipped several full‑stack projects—experience that has honed both my analytical thinking and my craftsmanship.
+                I'm a <strong>final‑year B.Tech student in Electronics & Communication Engineering at NIT Jamshedpur</strong>, driven by a fascination with how elegant code can turn complex ideas into real‑world solutions. Over the last four years I've solved <strong>300 + data‑structure &amp; algorithm challenges</strong> and shipped several full‑stack projects—experience that has honed both my analytical thinking and my craftsmanship.
               </p>
               <p className="leading-relaxed mb-4">
-                As a self‑motivated learner I thrive on rapidly mastering new technologies. My current toolkit centres on <strong>TypeScript, React / Next.js, Node.js and SQL/NoSQL backends</strong>, with hands‑on exposure to Supabase, Clerk, Arcjet, and modern DevOps workflows. Whether prototyping solo or collaborating in agile teams, I prioritise clean architecture, rigorous testing, and clear communication.
+                As a self‑motivated learner I thrive on rapidly mastering new technologies. My current toolkit centres on <strong>TypeScript, React / Next.js, Node.js and SQL/NoSQL backends</strong>, with hands‑on exposure to Supabase, Clerk, Arcjet, and modern DevOps workflows. Whether prototyping solo or collaborating in agile teams, I prioritise clean architecture, rigorous testing, and clear communication.
               </p>
               <p className="leading-relaxed">
-                I’m now seeking an <strong>entry‑level Software Development Engineer role</strong> where I can contribute to high‑impact products, learn from seasoned mentors, and keep pushing the boundaries of what software can deliver. When I’m not coding you’ll find me dissecting tech blogs, experimenting with AI APIs, or mentoring peers through their first LeetCode hurdles.
+                I'm now seeking an <strong>entry‑level Software Development Engineer role</strong> where I can contribute to high‑impact products, learn from seasoned mentors, and keep pushing the boundaries of what software can deliver. When I'm not coding you'll find me dissecting tech blogs, experimenting with AI APIs, or mentoring peers through their first LeetCode hurdles.
               </p>
             </motion.div>
 
@@ -100,72 +101,49 @@ const About: React.FC = () => {
             </motion.div>
           </div>
 
-          {/* Right column: Timeline (span 5) */}
+          {/* Right column: Timeline (span 5) - Now with sticky positioning */}
           <div className="lg:col-span-5">
-            <motion.h3
-              initial={{ opacity: 0, y: -20 }}
-              whileInView={{ opacity: 1, y: 0, transition: { duration: 0.5 } }}
-              viewport={{ once: true }}
-              className="text-2xl font-semibold text-white mb-10"
-            >
-              Education Timeline
-            </motion.h3>
-
-            {/* Experience */}
-            <motion.div
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true, amount: 0.3 }}
-              variants={card as Variants}
-              custom={2}
-              className="relative pb-10 pl-8 border-l-2 border-blue-600/60 before:absolute before:-left-2 before:top-0 before:w-4 before:h-4 before:bg-blue-600 before:rounded-full before:shadow-md"
-            >
-              <div className="bg-gray-800/80 p-6 rounded-2xl shadow-lg ring-1 ring-gray-700/40">
-                <div className="flex items-center mb-2 text-blue-400 font-semibold">
-                  <GraduationCap size={20} className="mr-2" />
-                  2022 - Present
-                </div>
-                <h4 className="text-xl font-semibold text-white mb-2">Self-Learning &amp; Project Development</h4>
-                <p className="mb-4">Independent Study &amp; Personal Projects</p>
-                <div className="flex items-center justify-between text-sm text-gray-400">
-                  <span className="flex items-center">
-                    <Calendar size={16} className="mr-1" /> Continuous Learning
-                  </span>
-                  <span className="flex items-center">
-                    <MapPin size={16} className="mr-1" /> Remote
-                  </span>
-                </div>
-              </div>
-            </motion.div>
-
-            {/* Education items */}
-            {education.map((item, i) => (
-              <motion.div
-                key={item.year}
-                initial="hidden"
-                whileInView="visible"
-                viewport={{ once: true, amount: 0.3 }}
-                variants={card as Variants}
-                custom={i + 3}
-                className="relative pb-10 pl-8 last:pb-0 border-l-2 border-blue-600/60 before:absolute before:-left-2 before:top-0 before:w-4 before:h-4 before:bg-blue-600 before:rounded-full before:shadow-md"
+            <div className="lg:sticky lg:top-8">
+              <motion.h3
+                initial={{ opacity: 0, y: -20 }}
+                whileInView={{ opacity: 1, y: 0, transition: { duration: 0.5 } }}
+                viewport={{ once: true }}
+                className="text-2xl font-semibold text-white mb-10"
               >
-                <div className="bg-gray-800/80 p-6 rounded-2xl shadow-lg ring-1 ring-gray-700/40">
-                  <div className="flex items-center mb-2 text-blue-400 font-semibold">
-                    <GraduationCap size={20} className="mr-2" /> {item.year}
-                  </div>
-                  <h4 className="text-xl font-semibold text-white mb-2">{item.degree}</h4>
-                  <p className="mb-4">{item.institution}</p>
-                  <div className="flex items-center justify-between text-sm text-gray-400">
-                    <span className="flex items-center">
-                      <Calendar size={16} className="mr-1" /> {item.score}
-                    </span>
-                    <span className="flex items-center">
-                      <MapPin size={16} className="mr-1" /> {item.location}
-                    </span>
-                  </div>
-                </div>
-              </motion.div>
-            ))}
+                Education
+              </motion.h3>
+
+              {/* Education items */}
+              <div className="space-y-0">
+                {education.map((item, i) => (
+                  <motion.div
+                    key={item.year}
+                    initial="hidden"
+                    whileInView="visible"
+                    viewport={{ once: true, amount: 0.3 }}
+                    variants={card as Variants}
+                    custom={i + 3}
+                    className="relative pb-10 pl-8 last:pb-0 border-l-2 border-blue-600/60 before:absolute before:-left-2 before:top-0 before:w-4 before:h-4 before:bg-blue-600 before:rounded-full before:shadow-md"
+                  >
+                    <div className="bg-gray-800/80 p-6 rounded-2xl shadow-lg ring-1 ring-gray-700/40">
+                      <div className="flex items-center mb-2 text-blue-400 font-semibold">
+                        <GraduationCap size={20} className="mr-2" /> {item.year}
+                      </div>
+                      <h4 className="text-xl font-semibold text-white mb-2">{item.degree}</h4>
+                      <p className="mb-4">{item.institution}</p>
+                      <div className="flex items-center justify-between text-sm text-gray-400">
+                        <span className="flex items-center">
+                          <Calendar size={16} className="mr-1" /> {item.score}
+                        </span>
+                        <span className="flex items-center">
+                          <MapPin size={16} className="mr-1" /> {item.location}
+                        </span>
+                      </div>
+                    </div>
+                  </motion.div>
+                ))}
+              </div>
+            </div>
           </div>
         </div>
       </div>

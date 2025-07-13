@@ -1,10 +1,96 @@
-import React from "react";
-import { ArrowRight, Download, Github, Linkedin, Mail } from "lucide-react";
+import React, { useState } from "react";
+import { ArrowRight, Download, Github, Linkedin, Mail, CheckCircle, AlertCircle } from "lucide-react";
 import { motion } from "framer-motion";
 
 const Hero: React.FC = () => {
+  const [isDownloading, setIsDownloading] = useState(false);
+  const [downloadStatus, setDownloadStatus] = useState<'idle' | 'success' | 'error'>('idle');
+
   const scrollToProjects = () =>
     document.querySelector("#projects")?.scrollIntoView({ behavior: "smooth" });
+
+  const handleDownloadCV = async () => {
+    setIsDownloading(true);
+    setDownloadStatus('idle');
+
+    try {
+      // Create download link
+      const link = document.createElement('a');
+      link.href = '/resume.pdf'; // Update this path to match your file name in public folder
+      link.download = 'Keshav_Barnawal_CV.pdf'; // Name for the downloaded file
+      link.target = '_blank';
+      
+      // Add to DOM, click, and remove
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+
+      // Simulate download time for better UX
+      await new Promise(resolve => setTimeout(resolve, 800));
+      
+      setDownloadStatus('success');
+      
+      // Reset status after 2 seconds
+      setTimeout(() => setDownloadStatus('idle'), 2000);
+      
+    } catch (error) {
+      console.error('Download failed:', error);
+      setDownloadStatus('error');
+      
+      // Reset status after 3 seconds
+      setTimeout(() => setDownloadStatus('idle'), 3000);
+    } finally {
+      setIsDownloading(false);
+    }
+  };
+
+  const getDownloadButtonContent = () => {
+    if (isDownloading) {
+      return (
+        <>
+          <div className="animate-spin rounded-full h-4 w-4 border-2 border-current border-t-transparent mr-2"></div>
+          Downloading...
+        </>
+      );
+    }
+
+    if (downloadStatus === 'success') {
+      return (
+        <>
+          <CheckCircle size={18} className="mr-2" />
+          Downloaded!
+        </>
+      );
+    }
+
+    if (downloadStatus === 'error') {
+      return (
+        <>
+          <AlertCircle size={18} className="mr-2" />
+          Try Again
+        </>
+      );
+    }
+
+    return (
+      <>
+        <Download className="mr-2" size={18} />
+        Download CV
+      </>
+    );
+  };
+
+  const getDownloadButtonStyles = () => {
+    if (downloadStatus === 'success') {
+      return 'border-2 border-green-600 text-green-600 hover:bg-green-600 hover:text-white';
+    }
+    
+    if (downloadStatus === 'error') {
+      return 'border-2 border-red-600 text-red-600 hover:bg-red-600 hover:text-white';
+    }
+    
+    return 'border-2 border-blue-600 text-blue-600 hover:bg-blue-600 hover:text-white';
+  };
 
   return (
     <section
@@ -70,7 +156,7 @@ const Hero: React.FC = () => {
             >
               Passionate about solving real‑world problems with{" "}
               <span className="text-blue-400 font-semibold">
-                clean & efficient code
+                clean & efficient code
               </span>
             </motion.p>
 
@@ -100,15 +186,20 @@ const Hero: React.FC = () => {
                 View My Projects <ArrowRight className="ml-2" size={18} />
               </motion.button>
 
-              <motion.a
-                href="/#"
-                className="border-2 border-blue-600 text-blue-600 hover:bg-blue-600 hover:text-white px-7 py-3 rounded-lg font-semibold flex items-center justify-center transition-all"
+              <motion.button
+                onClick={handleDownloadCV}
+                disabled={isDownloading}
+                className={`
+                  ${getDownloadButtonStyles()}
+                  px-7 py-3 rounded-lg font-semibold flex items-center justify-center transition-all
+                  disabled:opacity-70 disabled:cursor-not-allowed
+                  min-w-[180px]
+                `}
                 whileHover={{ scale: 1.05, y: -2 }}
                 whileTap={{ scale: 0.95 }}
               >
-                <Download className="mr-2" size={18} />
-                Download CV
-              </motion.a>
+                {getDownloadButtonContent()}
+              </motion.button>
             </motion.div>
 
             {/* Social */}
