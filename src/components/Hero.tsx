@@ -16,7 +16,7 @@ const Hero: React.FC = () => {
     try {
       // Create download link
       const link = document.createElement('a');
-      link.href = '/resume.pdf'; // Update this path to match your file name in public folder
+      link.href = '/KeshavResume.pdf'; // Update this path to match your file name in public folder
       link.download = 'Keshav_Barnawal_CV.pdf'; // Name for the downloaded file
       link.target = '_blank';
       
