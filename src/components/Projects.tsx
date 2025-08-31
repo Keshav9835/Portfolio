@@ -112,9 +112,9 @@ const Projects: React.FC = () => {
       ],
       image:
         "https://i.postimg.cc/PfFybXCC/ImgText.png",
-      github: "https://github.com/Keshav9835",
+      github: "https://github.com/Keshav9835/SaaS-App",
       demo: "https://imagine-dun.vercel.app/",
-      featured: true,
+      featured: false,
       icons: [],
       teamSize: "Solo Project",
     },
