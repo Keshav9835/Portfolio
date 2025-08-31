@@ -35,11 +35,11 @@ const Projects: React.FC = () => {
 
   const projects: Project[] = [
     {
-      title: "Welth - AI Finance Tracker",
+      title: "TrackFi - AI Finance Tracker",
       description:
         "A comprehensive AI-powered finance tracking application that helps users manage their income, expenses, and financial goals with intelligent insights.",
       detailedDescription:
-        "Welth is a cutting-edge finance tracking application that leverages artificial intelligence to provide users with intelligent insights into their financial habits. The application features a modern, intuitive interface built with Next.js and TypeScript, ensuring type safety and optimal performance.",
+        "TrackFi is a cutting-edge finance tracking application that leverages artificial intelligence to provide users with intelligent insights into their financial habits. The application features a modern, intuitive interface built with Next.js and TypeScript, ensuring type safety and optimal performance.",
       features: [
         "Track income and expenses with smart categorization",
         "AI-powered financial reports and insights",
@@ -75,6 +75,47 @@ const Projects: React.FC = () => {
       featured: true,
       icons: [Sparkles, Shield, Scan, BarChart3],
       timeline: "3 months",
+      teamSize: "Solo Project",
+    },
+    {
+      title: "Imagine – Text to Image Generator",
+      description:
+        "A full-stack MERN application that generates AI-powered images from text prompts with secure authentication and credit-based usage.",
+      detailedDescription:
+        "Imagine is an AI-powered text-to-image generator built on the MERN stack. Users can register, log in, and securely manage their accounts with JWT-based authentication. The app features a responsive React.js and Tailwind CSS interface for a seamless user experience. A credit-based subscription system powered by Razorpay allows users to purchase credits and generate images. The platform is deployed on Vercel (frontend) and Render (backend) for scalability and reliable performance.",
+      features: [
+        "Generate AI-powered images from text prompts",
+        "Secure JWT-based authentication for user registration and login",
+        "Modern, responsive UI built with React.js and Tailwind CSS",
+        "Subscription and credit system integrated with Razorpay",
+        "Deployed with Vercel (frontend) and Render (backend)",
+      ],
+      challenges: [
+        "Integrating Razorpay payment gateway for credit system",
+        "Managing authentication and authorization with JWT",
+        "Handling API requests efficiently for image generation",
+        "Designing a responsive and visually appealing UI",
+      ],
+      learnings: [
+        "Payment integration with Razorpay",
+        "Implementing JWT authentication in MERN applications",
+        "Best practices for deploying frontend and backend separately",
+        "Advanced UI design with Tailwind CSS",
+      ],
+      techStack: [
+        "React.js",
+        "Node.js",
+        "Express.js",
+        "MongoDB",
+        "Tailwind CSS",
+        "Razorpay",
+      ],
+      image:
+        "https://i.postimg.cc/PfFybXCC/ImgText.png",
+      github: "https://github.com/Keshav9835",
+      demo: "https://imagine-dun.vercel.app/",
+      featured: true,
+      icons: [],
       teamSize: "Solo Project",
     },
     {
@@ -115,42 +156,6 @@ const Projects: React.FC = () => {
       demo: "https://keshavb-9835.github.io/Currency-Converter/",
       featured: false,
       icons: [],
-      timeline: "2 weeks",
-      teamSize: "Solo Project",
-    },
-    {
-      title: "Task Management System",
-      description:
-        "A modern task management application with real-time collaboration features and intuitive user interface.",
-      detailedDescription:
-        "A comprehensive task management system designed for teams and individuals to organize, track, and collaborate on projects efficiently. Features real-time updates, drag-and-drop functionality, and advanced filtering options.",
-      features: [
-        "Create, edit, and organize tasks efficiently",
-        "Real-time collaboration with team members",
-        "Progress tracking and deadline management",
-        "Responsive design for all devices",
-        "Advanced filtering and search capabilities",
-      ],
-      challenges: [
-        "Implementing real-time collaboration features",
-        "Creating intuitive drag-and-drop interface",
-        "Managing complex state across components",
-        "Optimizing performance for large task lists",
-      ],
-      learnings: [
-        "Real-time communication with WebSockets",
-        "Advanced React patterns and state management",
-        "UI/UX design principles",
-        "Performance optimization techniques",
-      ],
-      techStack: ["React.js", "Node.js", "MongoDB", "Express.js", "Socket.io"],
-      image:
-        "https://images.pexels.com/photos/3184298/pexels-photo-3184298.jpeg?auto=compress&cs=tinysrgb&w=800",
-      github: "https://github.com/Keshav9835",
-      demo: "#",
-      featured: false,
-      icons: [],
-      timeline: "6 weeks",
       teamSize: "Solo Project",
     },
   ];
